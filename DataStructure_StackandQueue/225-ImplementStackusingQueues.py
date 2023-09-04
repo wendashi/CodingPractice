@@ -14,10 +14,8 @@ class Mystack():
             for i in range(len(self.queue) - 1):
                 self.queue.append(self.queue.popleft())
             return self.queue.popleft() 
-        
-        # for i in range(len(self.queue) - 1):
-        #         self.queue.append(self.queue.popleft())
-        # return self.queue.popleft()
+        # else:
+        #    return self.que.pop()
     
     def top(self):
         if self.empty():
