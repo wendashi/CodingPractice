@@ -6,18 +6,18 @@
 # res = sol.reverseLeftWords(s = "abcdefg", k = 2)
 # print(res)
 
-class Solution:
-    def reverseLeftWords(self, s: str, n: int) -> str:
-        new_s = ''
-        for i in range(len(s)):
-            j = (i + n) % len(s)
-            new_s = new_s + s[j]
+# class Solution:
+#     def reverseLeftWords(self, s: str, n: int) -> str:
+#         new_s = ''
+#         for i in range(len(s)):
+#             j = (i + n) % len(s)
+#             new_s = new_s + s[j]
         
-        return ''.join(new_s)
+#         return ''.join(new_s)
 
-sol = Solution()
-res = sol.reverseLeftWords(s = "abcdefg", n = 2)
-print(res)
+# sol = Solution()
+# res = sol.reverseLeftWords(s = "abcdefg", n = 2)
+# print(res)
 
 # 时间复杂度分析：O(n)
 
@@ -30,3 +30,21 @@ print(res)
 # 主要的空间消耗来自于创建了一个名为new_s的新字符串，它的长度等于输入字符串s的长度。
 # 此外，还有一些常数级的辅助空间消耗，如循环变量i、j等。
 # 所以总体空间复杂度可以表示为O(len(s))，其中len(s)是输入字符串s的长度。
+
+#2023.9.16(6th)
+
+
+class Solution():
+    def leftrever(self, s: str, k: int):
+        # return s[k:] + s[:k]
+        new_s = ''
+        for i in range(len(s)):
+            j = (i + k) % len(s)
+            new_s = new_s + s[j]
+        
+        return new_s
+
+    
+sol = Solution()
+res = sol.leftrever(s = "abcdefg", k = 2)
+print(res)

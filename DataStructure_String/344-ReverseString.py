@@ -13,24 +13,47 @@
 
 ## 2023.9.8 two pointers
 
+# class Solution():
+#     def reverstring(self, s: list[str]):
+#         l = 0
+#         r = len(s) - 1
+#         while l < r:
+#             # tempr = s[r]
+#             # templ = s[l]
+#             # s[l] = tempr
+#             # s[r] = templ
+#             s[l], s[r] = s[r], s[l]
+#             l += 1
+#             r -= 1
+            
+
+#         return s[:]
+    
+
+# sol = Solution()
+# res = sol.reverstring(s = ["h","e","l","l","o"])
+# print(res)
+
+
+
+# 2023.9.16(6th)
+
+
 class Solution():
-    def reverstring(self, s: list[str]):
+    def reversestring(self, s: list[str]):
+        # return s[::-1] 
         l = 0
         r = len(s) - 1
         while l < r:
-            # tempr = s[r]
-            # templ = s[l]
-            # s[l] = tempr
-            # s[r] = templ
             s[l], s[r] = s[r], s[l]
             l += 1
             r -= 1
-            
-
+        
         return s[:]
-    
+
+
 
 sol = Solution()
-res = sol.reverstring(s = ["h","e","l","l","o"])
+res = sol.reversestring(s = ["h","e","l","l","o"])
 print(res)
-
+#time: O(n), space: O(1)

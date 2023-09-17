@@ -30,21 +30,21 @@
 # 总体来说，这个函数的空间复杂度主要由单词列表 words 和新创建的连接后的字符串决定，通常为 O(n)。由于没有创建额外的数据结构，空间复杂度相对较低。
 
 
-class Solution():
-    def reverseword(self, s: str):
-        words = s.split()
-        l = 0
-        r = len(words) - 1
-        while l < r:
-            words[l], words[r] = words[r], words[l]
-            l += 1
-            r -= 1
+# class Solution():
+#     def reverseword(self, s: str):
+#         words = s.split()
+#         l = 0
+#         r = len(words) - 1
+#         while l < r:
+#             words[l], words[r] = words[r], words[l]
+#             l += 1
+#             r -= 1
         
-        return ' '.join(words) 
+#         return ' '.join(words) 
     
-sol = Solution()
-res = sol.reverseword(s = "a good   example")
-print(res)
+# sol = Solution()
+# res = sol.reverseword(s = "a good   example")
+# print(res)
 
 # 时间复杂度分析：
 
@@ -63,3 +63,15 @@ print(res)
 # l 和 r 两个指针以及循环中的其他变量只占用常量级别的额外空间，不随输入字符串大小而变化。
 
 # 因此，总体来说，这个函数的空间复杂度主要由单词列表 words 决定，通常为 O(n)。
+
+# 2023.9.16(6th)
+
+class Solution():
+    def reverseword(self, s: str):
+        sl = s.split()
+        res = sl[::-1]
+        return ' '.join(res)
+
+sol = Solution()
+res = sol.reverseword(s = "the sky is blue")
+print(res)
