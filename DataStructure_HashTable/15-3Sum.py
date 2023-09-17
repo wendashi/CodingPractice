@@ -36,47 +36,47 @@
 # res = sol.Sum3(nums = [-1,0,1,2,-1,-4])
 # print(res)
 
-class Solution():
-    def sumof3nums(self, nums: list[int]):
-        nums.sort()
+# class Solution():
+#     def sumof3nums(self, nums: list[int]):
+#         nums.sort()
 
-        result = []
+#         result = []
 
-        for i in range(len(nums)):
-            if nums[i] > 0:
-                return result
+#         for i in range(len(nums)):
+#             if nums[i] > 0:
+#                 return result
             
-            if i > 0 and nums[i] == nums[i - 1]:#i 与 i 的左边去比，left 在 i 的右边
-                continue
+#             if i > 0 and nums[i] == nums[i - 1]:#i 与 i 的左边去比，left 在 i 的右边
+#                 continue
         
-            left = i + 1
-            right = len(nums) - 1
+#             left = i + 1
+#             right = len(nums) - 1
 
-            while left < right:
-                print(i, left, right)
-                print(nums[i], nums[left], nums[right])
-                sumof3 = nums[i] + nums[left] + nums[right] #调节
+#             while left < right:
+#                 print(i, left, right)
+#                 print(nums[i], nums[left], nums[right])
+#                 sumof3 = nums[i] + nums[left] + nums[right] #调节
 
-                if sumof3 < 0:
-                    left += 1
-                elif sumof3 > 0:
-                    right -= 1
-                else: 
-                    result.append([nums[i], nums[left], nums[right]])
+#                 if sumof3 < 0:
+#                     left += 1
+#                 elif sumof3 > 0:
+#                     right -= 1
+#                 else: 
+#                     result.append([nums[i], nums[left], nums[right]])
                 
-                    while left < right and nums[left] == nums[left + 1]: #同上
-                        left += 1
-                    while left < right and nums[right] == nums[right - 1]:
-                        right -= 1
-                    # 不论如何都要移动，可以移动一个，但移动两个更快
-                    left += 1
-                    right -= 1
+#                     while left < right and nums[left] == nums[left + 1]: #同上
+#                         left += 1
+#                     while left < right and nums[right] == nums[right - 1]:
+#                         right -= 1
+#                     # 不论如何都要移动，可以移动一个，但移动两个更快
+#                     left += 1
+#                     right -= 1
                 
-        return result
+#         return result
 
-sol = Solution()
-res = sol.sumof3nums(nums = [1,-1,-1,0])
-print(res)
+# sol = Solution()
+# res = sol.sumof3nums(nums = [1,-1,-1,0])
+# print(res)
 
 # 时间复杂度分析：
 
@@ -89,3 +89,42 @@ print(res)
 # 空间复杂度分析：
 
 # 由于 result 列表只存储最终的结果，而不会随着输入规模的增加而线性增长，所以空间复杂度是 O(1)
+
+# 2023.9.17（6th）  
+
+class Solution():
+    def sumof3(self, nums: list[int]):
+        nums.sort()
+        res = []
+
+        for i in range(len(nums)):
+            if nums[i] > 0:
+                return res
+
+            if i > 0 and nums[i] == nums[i - 1]:
+                continue
+
+            l = i + 1
+            r = len(nums) - 1
+
+            while l < r:
+                sum = nums[i] + nums[l] + nums[r]
+                if sum < 0 :
+                    l += 1
+                elif sum > 0 :
+                    r -= 1
+                else:
+                    res.append([nums[i], nums[l], nums[r]])
+
+                    while l < r and nums[l] == nums[l + 1]:
+                        l += 1
+                    while l < r and nums[r] == nums[r - 1]:
+                        r -= 1
+                    l += 1
+                    r -= 1
+        
+        return res
+    
+sol = Solution()
+res = sol.sumof3(nums = [-1,0,1,2,-1,-4])
+print(res)
