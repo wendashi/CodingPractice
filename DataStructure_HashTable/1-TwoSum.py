@@ -18,16 +18,32 @@
 # print(res)
 
 #2023.9.17 (6th)
-class Solution():
-    def twosum(self, nums: list[int], target: int):
-        hash = {}
+# class Solution():
+#     def twosum(self, nums: list[int], target: int):
+#         hash = {}
 
-        for i, num in enumerate(nums):
-            if target - i in hash.keys():
-                return [hash[i] , hash[target - i]]
+#         for i, num in enumerate(nums):
+#             if target - i in hash.keys():
+#                 return [hash[i] , hash[target - i]]
             
-            hash[num] = i
+#             hash[num] = i
         
+# sol = Solution()
+# res = sol.twosum(nums = [2,7,11,15], target = 9)
+# print(res)
+
+#2023.9.19 (7th)
+class Solution():
+    def twoSum(self, nums: list[int], target: int):
+        hash = {}
+        for i, num in enumerate(nums):
+            if target - num in hash:
+                return [hash[target - num], i]
+            else:
+                hash[num] = i
+        
+        return None
+
 sol = Solution()
-res = sol.twosum(nums = [2,7,11,15], target = 9)
+res = sol.twoSum(nums = [2,7,11,15], target = 9)
 print(res)

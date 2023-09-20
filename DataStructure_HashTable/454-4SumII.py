@@ -62,6 +62,33 @@
 
 # 2023.9.17（6th）
 
+# class Solution():
+#     def foursum(self, nums1: list[int], nums2: list[int], nums3: list[int], nums4: list[int]):
+#         hash = {}
+
+#         for i in nums1:
+#             for j in nums2:
+#                 if i + j in hash:
+#                     hash[i + j] += 1
+#                 else:
+#                     hash[i + j] = 1
+        
+#         res = 0
+#         for i in nums3:
+#             for j in nums4:
+#                 if -i-j in hash:
+#                     res += hash[-i-j]
+        
+
+#         return res
+    
+# sol = Solution()
+# res = sol.foursum(nums1 = [1,2], nums2 = [-2,-1], nums3 = [-1,2], nums4 = [0,2])
+# print(res)
+
+
+#2023.9.19(7th)
+
 class Solution():
     def foursum(self, nums1: list[int], nums2: list[int], nums3: list[int], nums4: list[int]):
         hash = {}
@@ -72,17 +99,15 @@ class Solution():
                     hash[i + j] += 1
                 else:
                     hash[i + j] = 1
-        
-        res = 0
+
+        count = 0
         for i in nums3:
             for j in nums4:
                 if -i-j in hash:
-                    res += hash[-i-j]
+                    count += hash[-i - j]
         
+        return count
 
-        return res
-    
 sol = Solution()
 res = sol.foursum(nums1 = [1,2], nums2 = [-2,-1], nums3 = [-1,2], nums4 = [0,2])
 print(res)
-
