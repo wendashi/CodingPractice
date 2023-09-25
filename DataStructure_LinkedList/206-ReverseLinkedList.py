@@ -56,30 +56,83 @@
 
 # 2023.9.19(6th)
 
+# class ListNode():
+#     def __init__(self, val = 0, next = None) -> None:
+#         self.val = val
+#         self.next = next
+
+# class Solution():
+#     def Rever(self, head):
+#         cur = head
+#         pre = ListNode(None)
+#         while cur:
+#             next = cur.next
+#             cur.next = pre
+#             pre = cur
+#             cur = next
+
+#         return pre
+
+# def print_ll(head):
+#     if head is None:
+#         return -1
+#     cur = head
+#     while cur is not None:
+#         print(cur.val, end='->')
+#         cur = cur.next
+
+
+# def list2ll(list):
+#     if not list:
+#         return None
+    
+#     head = ListNode(list[0])
+#     cur = head
+#     for val in list[1:]:
+#         cur.next = ListNode(val)
+#         cur = cur.next
+    
+#     return head
+
+# head1 = [1,2,3,4,5]
+# head2 = list2ll(head1)
+
+# print_ll(head2)
+
+# sol_instance = Solution()
+# res = sol_instance.Rever(head2)
+
+# print('\n')
+# print_ll(res)
+
+
+# 2023.9.21(7th) #迭代
+
 class ListNode():
     def __init__(self, val = 0, next = None) -> None:
         self.val = val
         self.next = next
 
-class Solution():
-    def Rever(self, head):
-        cur = head
-        pre = ListNode(None)
-        while cur:
-            next = cur.next
-            cur.next = pre
-            pre = cur
-            cur = next
+class Solution():#迭代
+    def rever(self, head):
+        # pre = None
+        # cur = head
 
-        return pre
+        # while cur:
+        #     next = cur.next
+        #     cur.next = pre
+        #     pre = cur
+        #     cur = next
+        
+        # return pre
+        if head is None or head.next is None:
+            return head
+        
+        res = self.rever(head.next)
+        head.next.next = head
+        head.next = None
 
-def print_ll(head):
-    if head is None:
-        return -1
-    cur = head
-    while cur is not None:
-        print(cur.val, end='->')
-        cur = cur.next
+        return res
 
 
 def list2ll(list):
@@ -94,16 +147,20 @@ def list2ll(list):
     
     return head
 
-head1 = [1,2,3,4,5]
-head2 = list2ll(head1)
+def printll(head):
+    if not head:
+        return print('None')
+    
+    cur = head
+    while cur:
+        print(cur.val , end= '->')
+        cur = cur.next
 
-print_ll(head2)
+    return print('None')
 
-sol_instance = Solution()
-res = sol_instance.Rever(head2)
+head1 = list2ll([1,2,3,4,5])
+printll(head1)
 
-print('\n')
-print_ll(res)
-
-
-
+sol = Solution()
+head2 = sol.rever(head1)
+printll(head2)

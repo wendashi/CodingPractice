@@ -54,8 +54,30 @@
 
 #2023.9.20 (6th)
 
+# class ListNode():
+#     def __init__(self, val = 0, next = None) -> None:
+#         self.val = val
+#         self.next = next
+
+# class Solution():
+#     def swap(self, head):
+#         dummy = ListNode(next = head)
+#         cur = dummy
+#         while cur.next and cur.next.next:
+#             temp1 = cur.next
+#             temp2 = cur.next.next
+
+#             cur.next = cur.next.next
+#             cur.next.next = temp1
+#             temp1.next = temp2
+#             cur = cur.next.next
+
+#         return dummy.next
+
+#2023.9.21(7th)
+
 class ListNode():
-    def __init__(self, val = 0, next = None) -> None:
+    def __int__(self, val = 0, next = None):
         self.val = val
         self.next = next
 
@@ -63,9 +85,10 @@ class Solution():
     def swap(self, head):
         dummy = ListNode(next = head)
         cur = dummy
+
         while cur.next and cur.next.next:
             temp1 = cur.next
-            temp2 = cur.next.next
+            temp2 = cur.next.next.next
 
             cur.next = cur.next.next
             cur.next.next = temp1
@@ -73,4 +96,3 @@ class Solution():
             cur = cur.next.next
 
         return dummy.next
-

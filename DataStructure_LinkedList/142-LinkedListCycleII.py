@@ -61,34 +61,73 @@
 
 # 2023.9.20(6th)
 
+# class ListNode():
+#     def __init__(self, val = 0, next = None) -> None:
+#         self.val = val
+#         self.next = next
+
+# class Solution():
+#     def circle(self, head: ListNode, pos: int):
+#         if head is None or head.next is None:
+#             return None
+        
+#         fast = head
+#         slow = head
+#         while fast and fast.next:
+#             fast = fast.next.next
+#             slow = slow.next
+#             print('slow', slow.val)
+#             print('fast', fast.val)
+
+#             if slow == fast:
+#                 meet = slow
+#                 print(meet.val)#第一步起，就是从第二个节点开始
+#                 cur = head 
+#                 while cur != slow:
+#                     # print(cur.val)
+#                     cur = cur.next
+#                     slow = slow.next
+#                 return cur.val
+            
+#         return None
+
+# head4 = ListNode(-4)
+# head3 = ListNode(0, head4)
+# head2 = ListNode(2, head3)
+# head1 = ListNode(3, head2)
+
+# head4.next = head2 #在后面加一下 next 就行～
+
+# sol = Solution()
+# res = sol.circle(head1, pos = 1)
+
+# print(res)
+
+# 2023.9.21(7th)
+
 class ListNode():
     def __init__(self, val = 0, next = None) -> None:
         self.val = val
         self.next = next
 
 class Solution():
-    def circle(self, head: ListNode, pos: int):
+    def llc(self, head: ListNode, pos: int):
         if head is None or head.next is None:
             return None
-        
-        fast = head
-        slow = head
+    
+        slow, fast = head, head
         while fast and fast.next:
             fast = fast.next.next
             slow = slow.next
-            print('slow', slow.val)
-            print('fast', fast.val)
 
-            if slow == fast:
-                meet = slow
-                print(meet.val)#第一步起，就是从第二个节点开始
-                cur = head 
+            if fast == slow:
+                cur = head
                 while cur != slow:
-                    # print(cur.val)
                     cur = cur.next
                     slow = slow.next
+                
                 return cur.val
-            
+        
         return None
 
 head4 = ListNode(-4)
@@ -96,9 +135,8 @@ head3 = ListNode(0, head4)
 head2 = ListNode(2, head3)
 head1 = ListNode(3, head2)
 
-head4.next = head2 #在后面加一下 next 就行～
+head4.next = head2
 
 sol = Solution()
-res = sol.circle(head1, pos = 1)
-
+res = sol.llc(head1, 1)
 print(res)
