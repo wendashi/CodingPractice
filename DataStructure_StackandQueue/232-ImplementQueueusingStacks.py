@@ -46,48 +46,61 @@
 
 # print(param_4)
 
-# 2023.9.12(10:41:16)
-class Solution():
-    def __init__(self) -> None:
-        self.stack_in = []
-        self.stack_out = []
+# # 2023.9.12(10:41:16)
+# class Solution():
+#     def __init__(self) -> None:
+#         self.stack_in = []
+#         self.stack_out = []
 
-    def push(self, x: int):
-        self.stack_in.append(x)
+#     def push(self, x: int):
+#         self.stack_in.append(x)
     
-    def pop(self):
-        if self.empty():
-            return None
-        if self.stack_out:
-            return self.stack_out.pop()
-        else:
-            for _ in range(len(self.stack_in)):
-                self.stack_out.append(self.stack_in.pop())
-            return self.stack_out.pop()
+#     def pop(self):
+#         if self.empty():
+#             return None
+#         if self.stack_out:
+#             return self.stack_out.pop()
+#         else:
+#             for _ in range(len(self.stack_in)):
+#                 self.stack_out.append(self.stack_in.pop())
+#             return self.stack_out.pop()
             
         
-    def peek(self):
-        ans = self.pop()
-        self.stack_out.append(ans)
-        return ans
+#     def peek(self):
+#         ans = self.pop()
+#         self.stack_out.append(ans)
+#         return ans
     
-    def empty(self):
-        return not (self.stack_in or self.stack_out)
+#     def empty(self):
+#         return not (self.stack_in or self.stack_out)
     
-sol = Solution()
-res1 = sol.push(1)
+# sol = Solution()
+# res1 = sol.push(1)
 
-res2 = sol.push(2)
-print(res2)
+# res2 = sol.push(2)
+# print(res2)
 
-res3 = sol.peek()
-print(res3)
+# res3 = sol.peek()
+# print(res3)
 
-res4 = sol.pop()
-print(res4)
+# res4 = sol.pop()
+# print(res4)
 
-res5 = sol.empty()
-print(res5)
+# res5 = sol.empty()
+# print(res5)
 
 # 时间复杂度： push，empty：O(1); pop(),peek() : O(n)
 # 空间复杂度： O(n)
+
+import datetime
+
+# 获取当前的日期和时间
+current_time = datetime.datetime.now()
+
+# 将日期和时间格式化为字符串
+formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
+
+# 打印当前时间
+print("当前时间是:", formatted_time)
+
+# 当前时间是: 2023-09-26 16:15:52
