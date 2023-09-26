@@ -12,31 +12,63 @@ print("当前时间是:", formatted_time)
 
 # 当前时间是: 2023-09-22 15:34:46
 
-class Solution():
-    def totalfruit(self, fruits: list[int]):
-        i = 0
-        bucket = 0
-        classmap = defaultdict(int)
+# class Solution():
+#     def totalfruit(self, fruits: list[int]):
+#         i = 0
+#         bucket = 0
+#         classmap = defaultdict(int)
+#         res = 0
+
+#         for j in range(len(fruits)):
+#             print(classmap)
+#             if classmap[fruits[j]] == 0:
+#                 bucket += 1
+#             classmap[fruits[j]] += 1
+
+#             # 若不满足条件，移动i
+#             while bucket > 2:
+#                 if classmap[fruits[i]] == 1:
+#                     bucket -= 1
+#                 classmap[fruits[i]] -= 1
+#                 i += 1
+
+#             # 一旦满足条件，更新结果
+#             res = max(res, j - i + 1)
+#             j += 1
+#         return res    
+
+# sol = Solution()
+# res = sol.totalfruit(fruits = [3,3,3,1,2,1,1,2,3,3,4])
+# print(res)
+
+# 当前时间是: 2023-09-26 15:01:52（2nd）
+
+class Solution:
+    def totalFruit(self, fruits: list[int]) -> int:
         res = 0
+        i = 0
+        classMap = defaultdict(int)
+        bucket = 0
 
         for j in range(len(fruits)):
-            print(classmap)
-            if classmap[fruits[j]] == 0:
-                bucket += 1
-            classmap[fruits[j]] += 1
+            print('bucket:', bucket, 'classMap:', classMap)
 
-            # 若不满足条件，移动i
+            if classMap[fruits[j]] == 0:
+                bucket += 1
+            classMap[fruits[j]] += 1
+
             while bucket > 2:
-                if classmap[fruits[i]] == 1:
+                print('bucket:', bucket, 'classMap:', classMap)
+
+                if classMap[fruits[i]] == 1:
                     bucket -= 1
-                classmap[fruits[i]] -= 1
+                classMap[fruits[i]] -= 1
                 i += 1
 
-            # 一旦满足条件，更新结果
             res = max(res, j - i + 1)
-            j += 1
-        return res    
+
+        return res
 
 sol = Solution()
-res = sol.totalfruit(fruits = [3,3,3,1,2,1,1,2,3,3,4])
+res = sol.totalFruit(fruits = [3,3,3,1,2,1,1,2,3,3,4])
 print(res)

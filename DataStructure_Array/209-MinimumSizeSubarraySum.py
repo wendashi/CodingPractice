@@ -81,21 +81,41 @@ print("当前时间是:", formatted_time)
 
 # 当前时间是: 2023-09-22 15:22:37(8th)
 
+# class Solution():
+#     def minsss(self, target: int, nums: list[int]):
+#         i = 0
+#         sum = 0
+#         res = float('inf')
+#         for j in range(len(nums)):
+#             sum += nums[j]
+#             print(sum, i, j)
+#             while sum >= target:
+#                 res = min(res, j - i + 1)
+#                 sum -= nums[i]
+#                 i += 1
+        
+#         return 0 if res == float('inf') else res
+
+# sol = Solution()
+# res = sol.minsss(target = 7, nums = [2,3,1,2,4,3])
+# print(res)
+
+# 当前时间是: 2023-09-26 14:54:38 (8th)
+
 class Solution():
-    def minsss(self, target: int, nums: list[int]):
+    def mmsss(self, target: int, nums: list[int]):
+        res = float('inf')
         i = 0
         sum = 0
-        res = float('inf')
         for j in range(len(nums)):
             sum += nums[j]
-            print(sum, i, j)
             while sum >= target:
-                res = min(res, j - i + 1)
                 sum -= nums[i]
+                res = min(res, j - i + 1)
                 i += 1
         
-        return 0 if res == float('inf') else res
+        return res if res != float('inf') else 0
 
 sol = Solution()
-res = sol.minsss(target = 7, nums = [2,3,1,2,4,3])
+res = sol.mmsss(target = 11, nums = [1,1,1,1,1,1,1,1])
 print(res)

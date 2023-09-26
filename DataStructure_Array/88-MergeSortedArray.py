@@ -71,30 +71,58 @@ print("当前时间是:", formatted_time)
 
 # 2023-09-21 11:59:30
 
+# class Solution():
+#     def merge(self, nums1: list[int], m: int, nums2: list[int], n: int):
+#         p1 = 0
+#         p2 = 0
+#         res = []
+#         while p1 < m or p2 < n:
+#             if p1 == m:
+#                 res.append(nums2[p2])
+#                 p2 += 1
+#             elif p2 == n:
+#                 res.append(nums1[p1])
+#                 p1 += 1
+#             elif nums1[p1] > nums2[p2]:
+#                 res.append(nums2[p2])
+#                 p2 += 1
+#             else:
+#                 res.append(nums1[p1])
+#                 p1 += 1
+
+#         nums1[:] = res[:]
+#         return nums1
+
+# sol = Solution()
+# res = sol.merge(nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3)
+# print(res)
+
+# # 当前时间是: 2023-09-21 12:29:38
+
+# 当前时间是: 2023-09-26 10:40:09（8th）
+
 class Solution():
     def merge(self, nums1: list[int], m: int, nums2: list[int], n: int):
-        p1 = 0
-        p2 = 0
         res = []
-        while p1 < m or p2 < n:
-            if p1 == m:
-                res.append(nums2[p2])
-                p2 += 1
-            elif p2 == n:
-                res.append(nums1[p1])
-                p1 += 1
-            elif nums1[p1] > nums2[p2]:
-                res.append(nums2[p2])
-                p2 += 1
+        i, j = 0, 0
+        while i < m or j < n:
+            if i == m:
+                res.append(nums2[j])
+                j += 1
+            elif j == n:
+                res.append(nums1[i])
+                i += 1
+            elif nums1[i] < nums2[j]:
+                res.append(nums1[i])
+                i += 1
             else:
-                res.append(nums1[p1])
-                p1 += 1
-
+                res.append(nums2[j])
+                j += 1
+            
         nums1[:] = res[:]
+
         return nums1
 
 sol = Solution()
 res = sol.merge(nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3)
 print(res)
-
-# 当前时间是: 2023-09-21 12:29:38
