@@ -65,7 +65,6 @@
 #                 self.stack_out.append(self.stack_in.pop())
 #             return self.stack_out.pop()
             
-        
 #     def peek(self):
 #         ans = self.pop()
 #         self.stack_out.append(ans)
@@ -104,3 +103,45 @@ formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
 print("当前时间是:", formatted_time)
 
 # 当前时间是: 2023-09-26 16:15:52
+
+class MyQueue():
+    def __init__(self) -> None:
+        self.stack_in = []
+        self.stack_out = []
+
+    def push(self, x: int):
+        self.stack_in.append(x)
+
+    def pop(self):
+        if self.empty():
+            return None
+        
+        if self.stack_out:
+            return self.stack_out.pop()
+        else:
+            while self.stack_in:
+                ans = self.stack_in.pop()
+                self.stack_out.append(ans)
+            return self.stack_out.pop() 
+
+    def peek(self):
+        if self.empty():
+            return None
+        
+        ans = self.pop()
+        self.stack_out.append(ans)
+        
+        return ans
+
+    def empty(self):
+        return not(self.stack_in or self.stack_out)
+    
+mq = MyQueue()
+
+a1 = mq.push(1)
+a2 = mq.push(2)
+a3 = mq.peek()
+a4 = mq.pop()
+a5 = mq.empty()
+
+print(a1, a2, a3, a4, a5)

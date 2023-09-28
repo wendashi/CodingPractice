@@ -85,15 +85,49 @@ print("当前时间是:", formatted_time)
 
 # 当前时间是: 2023-09-21 15:05:48(8th)
 
+# class Solution():
+#     def smii(self, n: int):
+#         nums = [[0] * n for _ in range(n)]
+#         loop, mid = n // 2, n // 2
+#         startx, starty = 0, 0
+#         count = 1
+
+#         for offset in range(1, loop + 1):
+#             print(startx, starty)
+#             for i in range(starty, n - offset):
+#                 nums[startx][i] = count
+#                 count += 1
+#             for i in range(startx, n - offset):
+#                 nums[i][n - offset] = count
+#                 count += 1
+#             for i in range(n - offset, starty, -1):
+#                 nums[n - offset][i] = count
+#                 count += 1
+#             for i in range(n - offset, startx, -1):
+#                 nums[i][starty] = count
+#                 count += 1
+#             startx += 1
+#             starty += 1
+        
+#         if n % 2 != 0:
+#             nums[mid][mid] = count
+        
+#         return nums
+
+# sol = Solution()
+# res = sol.smii( n = 4)
+# print(res)
+
+# 当前时间是: 2023-09-28 09:27:38
+
 class Solution():
-    def smii(self, n: int):
-        nums = [[0] * n for _ in range(n)]
-        loop, mid = n // 2, n // 2
+    def matrixii(self, n: int):
         startx, starty = 0, 0
+        loop, mid = n // 2, n // 2
         count = 1
+        nums = [[0] * n for _ in range(n)]
 
         for offset in range(1, loop + 1):
-            print(startx, starty)
             for i in range(starty, n - offset):
                 nums[startx][i] = count
                 count += 1
@@ -108,14 +142,12 @@ class Solution():
                 count += 1
             startx += 1
             starty += 1
-        
+
         if n % 2 != 0:
             nums[mid][mid] = count
         
         return nums
 
 sol = Solution()
-res = sol.smii( n = 4)
+res = sol.matrixii(n = 3)
 print(res)
-
-# 当前时间是: 2023-09-21 15:26:30
