@@ -66,12 +66,36 @@
 
 # 2023.9.16(6th)
 
+# class Solution():
+#     def reverseword(self, s: str):
+#         sl = s.split()
+#         res = sl[::-1]
+#         return ' '.join(res)
+
+# sol = Solution()
+# res = sol.reverseword(s = "the sky is blue")
+# print(res)
+
+import datetime
+
+# 获取当前的日期和时间
+current_time = datetime.datetime.now()
+
+# 将日期和时间格式化为字符串
+formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
+
+# 打印当前时间
+print("当前时间是:", formatted_time)
+
+# 当前时间是: 2023-09-29 16:08:53(7th)
+
 class Solution():
-    def reverseword(self, s: str):
-        sl = s.split()
-        res = sl[::-1]
+    def reverword(self, s: str):
+        res = []
+        words = s.split()
+        res[:] = words[::-1]
         return ' '.join(res)
 
 sol = Solution()
-res = sol.reverseword(s = "the sky is blue")
+res = sol.reverword(s = "the sky is blue")
 print(res)

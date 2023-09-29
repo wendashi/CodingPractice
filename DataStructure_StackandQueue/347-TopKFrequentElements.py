@@ -59,33 +59,33 @@
 
 # 2023.9.12（6th）
 
-import heapq
+# import heapq
 
-class Solution():
-    def topk(self, nums: list[int], k: int):
-        hash = {}
+# class Solution():
+#     def topk(self, nums: list[int], k: int):
+#         hash = {}
 
-        for i in nums:
-            if i in hash:
-                hash[i] += 1
-            else:
-                hash[i] = 1
+#         for i in nums:
+#             if i in hash:
+#                 hash[i] += 1
+#             else:
+#                 hash[i] = 1
         
         
-        heap = []
-        for num, freq in hash.items():
-            heapq.heappush(heap, (-freq, num))
+#         heap = []
+#         for num, freq in hash.items():
+#             heapq.heappush(heap, (-freq, num))
 
-        result = []
-        for _ in range(k):
-            freq, num = heapq.heappop(heap)
-            result.append(num)
+#         result = []
+#         for _ in range(k):
+#             freq, num = heapq.heappop(heap)
+#             result.append(num)
         
-        return result
+#         return result
 
-sol = Solution()
-res = sol.topk(nums = [1,1,1,2,2,3], k = 2)
-print(res)
+# sol = Solution()
+# res = sol.topk(nums = [1,1,1,2,2,3], k = 2)
+# print(res)
 
 # 时间复杂度分析：
 
@@ -102,5 +102,41 @@ print(res)
 
 # 综合起来，总体空间复杂度是 O(n + k)。
 
+import datetime
 
+# 获取当前的日期和时间
+current_time = datetime.datetime.now()
 
+# 将日期和时间格式化为字符串
+formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
+
+# 打印当前时间
+print("当前时间是:", formatted_time)
+
+# 当前时间是: 2023-09-29 11:33:34
+
+import heapq
+
+class Solution():
+    def topk(self, nums: list[int], k: int):
+        freq_map = {}
+        for num in nums:
+            if num not in freq_map:
+                freq_map[num] = 1
+            else:
+                freq_map[num] += 1
+        
+        heap = []
+        for num, freq in freq_map.items():
+            heapq.heappush(heap, [-freq, num])
+        
+        res = []
+        for _ in range(k):
+            freq, num = heapq.heappop(heap)
+            res.append(num)
+        
+        return res
+
+sol = Solution()
+res = sol.topk(nums = [1,1,1,2,2,3], k = 2)
+print(res)

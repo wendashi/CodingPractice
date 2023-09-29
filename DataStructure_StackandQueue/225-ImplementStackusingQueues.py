@@ -50,45 +50,45 @@
 # res3 = stack1.empty()
 # print(res3)
 
-from collections import deque
+# from collections import deque
 
-class Mystack():
-    def __init__(self) -> None:
-        self.que = deque()
+# class Mystack():
+#     def __init__(self) -> None:
+#         self.que = deque()
 
-    def push(self, x: int):
-        self.que.append(x)
+#     def push(self, x: int):
+#         self.que.append(x)
     
-    def pop(self):
-        if self.empty():
-            return None
-        else:
-            return self.que.pop()
+#     def pop(self):
+#         if self.empty():
+#             return None
+#         else:
+#             return self.que.pop()
         
-    def top(self):
-        if self.empty():
-            return None
-        else:
-            ans = self.que.pop()
-            self.que.append(ans)
-            return ans
+#     def top(self):
+#         if self.empty():
+#             return None
+#         else:
+#             ans = self.que.pop()
+#             self.que.append(ans)
+#             return ans
     
-    def empty(self):
-        return not self.que
+#     def empty(self):
+#         return not self.que
 
-stack = Mystack()
+# stack = Mystack()
 
-stack.push(1)
-stack.push(2)
+# stack.push(1)
+# stack.push(2)
 
-res1 = stack.top()
-print(res1)
+# res1 = stack.top()
+# print(res1)
 
-res2 = stack.pop()
-print(res2)
+# res2 = stack.pop()
+# print(res2)
 
-res3 = stack.empty()
-print(res3)
+# res3 = stack.empty()
+# print(res3)
 
 # 1. 因为deque的pop操作也是常数时间；
 # 2. 通过deque来存储元素，空间复杂度不会随着元素数量的增加而线性增加，因为deque是一个动态数组，它会根据需要自动扩展其内部数组的大小。
@@ -97,3 +97,52 @@ print(res3)
 
 # - 时间复杂度: 都是O(1)
 # - 空间复杂度: 都是O(1)
+
+
+import datetime
+
+# 获取当前的日期和时间
+current_time = datetime.datetime.now()
+
+# 将日期和时间格式化为字符串
+formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
+
+# 打印当前时间
+print("当前时间是:", formatted_time)
+
+from collections import deque
+# 当前时间是: 2023-09-28 14:15:59
+
+class MyStack():
+    def __init__(self) -> None:
+        self.que = deque()
+    
+    def push(self, x: int):
+        self.que.append(x)
+    
+    def pop(self):
+        if self.empty():
+            return None
+        
+        return self.que.pop()
+    
+    def top(self):
+        if self.empty():
+            return None
+        else:
+            ans = self.que.pop()
+            self.que.append(ans)
+            return ans
+
+    def empty(self):
+        return not self.que
+
+myStack1 = MyStack()
+
+res1 = myStack1.push(1)
+res2 = myStack1.push(2)
+res3 = myStack1.top()
+res4 = myStack1.pop()
+res5 = myStack1.empty()
+
+print(res1, '\n', res2, '\n', res3, '\n', res4, '\n', res5)

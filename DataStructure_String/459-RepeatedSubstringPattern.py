@@ -42,17 +42,45 @@
 # 因此，该算法的空间复杂度是 O(1)，即它的空间消耗是常数级的，与输入规模无关。
 
 # 2023.9.17(6th)
+# class Solution():
+#     def repeated(self, s: str):
+#         new_s = ''
+#         for i in range(len(s) // 2):
+#             new_s = new_s + s[i]
+#             if new_s * (len(s) // (i+1) ) == s:
+#                 return True
+        
+#         return False
+
+# sol = Solution()
+# res = sol.repeated(s = 'ababb')
+# print(res)
+# # 时间、空间都是 O(n)
+
+import datetime
+
+# 获取当前的日期和时间
+current_time = datetime.datetime.now()
+
+# 将日期和时间格式化为字符串
+formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
+
+# 打印当前时间
+print("当前时间是:", formatted_time)
+
+# 当前时间是: 2023-09-29 16:21:32(7th)
 class Solution():
-    def repeated(self, s: str):
-        new_s = ''
-        for i in range(len(s) // 2):
-            new_s = new_s + s[i]
-            if new_s * (len(s) // (i+1) ) == s:
+    def rsp(self, s: str):
+        n = len(s)
+        s_i = ''
+        for i in range(1, (n // 2) + 1):
+            s_i = s[:i]
+            # print(s_i, i)
+            if n % i == 0 and s == s_i * (n // i):
                 return True
         
         return False
 
 sol = Solution()
-res = sol.repeated(s = 'ababb')
+res = sol.rsp(s = "abcabcabcabc")
 print(res)
-# 时间、空间都是 O(n)
