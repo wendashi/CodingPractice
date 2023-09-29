@@ -56,23 +56,63 @@
 # res = sol.valid(s = "anagram", t = "nagaraam")
 # print(res)
 
-#way1
+# #way1
+# class Solution():
+#     def valid(self, s: str, t: str):
+#         rec = 26 * [0]
+#         for i in s:
+#             rec[ord(i) - ord('a')] += 1
+        
+#         for i in t:
+#             rec[ord(i) - ord('a')] -= 1
+        
+#         for i in range(26):
+#             if rec[i] != 0:
+#                 return False
+
+#         return True
+
+
+# sol = Solution()
+# res = sol.valid(s = "anagram", t = "nagaraam")
+# print(res)
+
+import datetime
+
+# 获取当前的日期和时间
+current_time = datetime.datetime.now()
+
+# 将日期和时间格式化为字符串
+formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
+
+# 打印当前时间
+print("当前时间是:", formatted_time)
+
+# 当前时间是: 2023-09-29 16:47:20(7th)
+
 class Solution():
-    def valid(self, s: str, t: str):
-        rec = 26 * [0]
+    def va(self, s: str, t: str):
+        hash = {}
         for i in s:
-            rec[ord(i) - ord('a')] += 1
+            if i not in hash:
+                hash[i] = 1
+            else:
+                hash[i] += 1
         
         for i in t:
-            rec[ord(i) - ord('a')] -= 1
-        
-        for i in range(26):
-            if rec[i] != 0:
+            if i not in hash:
                 return False
-
+            else:
+                hash[i] -= 1
+        
+        for i, i_num in hash.items():
+            if i_num != 0:
+                return False
+        
         return True
 
-
 sol = Solution()
-res = sol.valid(s = "anagram", t = "nagaraam")
+res = sol.va(s = "rat", t = "car")
 print(res)
+
+# 当前时间是: 2023-09-29 16:51:21

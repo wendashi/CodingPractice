@@ -92,16 +92,66 @@
 
 # 2023.9.17（6th）  
 
+# class Solution():
+#     def sumof3(self, nums: list[int]):
+#         nums.sort()
+#         res = []
+
+#         for i in range(len(nums)):
+#             if nums[i] > 0:
+#                 return res
+
+#             if i > 0 and nums[i] == nums[i - 1]:
+#                 continue
+
+#             l = i + 1
+#             r = len(nums) - 1
+
+#             while l < r:
+#                 sum = nums[i] + nums[l] + nums[r]
+#                 if sum < 0 :
+#                     l += 1
+#                 elif sum > 0 :
+#                     r -= 1
+#                 else:
+#                     res.append([nums[i], nums[l], nums[r]])
+
+#                     while l < r and nums[l] == nums[l + 1]:
+#                         l += 1
+#                     while l < r and nums[r] == nums[r - 1]:
+#                         r -= 1
+#                     l += 1
+#                     r -= 1
+        
+#         return res
+    
+# sol = Solution()
+# res = sol.sumof3(nums = [-1,0,1,2,-1,-4])
+# print(res)
+
+import datetime
+
+# 获取当前的日期和时间
+current_time = datetime.datetime.now()
+
+# 将日期和时间格式化为字符串
+formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
+
+# 打印当前时间
+print("当前时间是:", formatted_time)
+
+# 当前时间是: 2023-09-29 20:42:41 (7th)
+
 class Solution():
-    def sumof3(self, nums: list[int]):
+    def threesum(self, nums: list[int]):
         nums.sort()
         res = []
 
         for i in range(len(nums)):
             if nums[i] > 0:
                 return res
-
-            if i > 0 and nums[i] == nums[i - 1]:
+            
+            if i > 0 and nums[i - 1] == nums[i]:
                 continue
 
             l = i + 1
@@ -109,22 +159,23 @@ class Solution():
 
             while l < r:
                 sum = nums[i] + nums[l] + nums[r]
-                if sum < 0 :
-                    l += 1
-                elif sum > 0 :
+
+                if sum > 0 :
                     r -= 1
+                elif sum < 0:
+                    l += 1
                 else:
                     res.append([nums[i], nums[l], nums[r]])
 
-                    while l < r and nums[l] == nums[l + 1]:
+                    while l < r and nums[l + 1] == nums[l]:
                         l += 1
-                    while l < r and nums[r] == nums[r - 1]:
+                    while l < r and nums[r - 1] == nums[r]:
                         r -= 1
                     l += 1
                     r -= 1
-        
+            
         return res
-    
+
 sol = Solution()
-res = sol.sumof3(nums = [-1,0,1,2,-1,-4])
+res = sol.threesum(nums = [-1,0,1,2,-1,-4])
 print(res)

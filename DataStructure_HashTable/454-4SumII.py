@@ -89,25 +89,60 @@
 
 #2023.9.19(7th)
 
+# class Solution():
+#     def foursum(self, nums1: list[int], nums2: list[int], nums3: list[int], nums4: list[int]):
+#         hash = {}
+
+#         for i in nums1:
+#             for j in nums2:
+#                 if i + j in hash:
+#                     hash[i + j] += 1
+#                 else:
+#                     hash[i + j] = 1
+
+#         count = 0
+#         for i in nums3:
+#             for j in nums4:
+#                 if -i-j in hash:
+#                     count += hash[-i - j]
+        
+#         return count
+
+# sol = Solution()
+# res = sol.foursum(nums1 = [1,2], nums2 = [-2,-1], nums3 = [-1,2], nums4 = [0,2])
+# print(res)
+
+import datetime
+
+# 获取当前的日期和时间
+current_time = datetime.datetime.now()
+
+# 将日期和时间格式化为字符串
+formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
+
+# 打印当前时间
+print("当前时间是:", formatted_time)
+
+# 当前时间是: 2023-09-29 20:27:59
+
 class Solution():
     def foursum(self, nums1: list[int], nums2: list[int], nums3: list[int], nums4: list[int]):
         hash = {}
-
         for i in nums1:
             for j in nums2:
-                if i + j in hash:
-                    hash[i + j] += 1
-                else:
+                if i + j not in hash:
                     hash[i + j] = 1
-
+                else:
+                    hash[i + j] += 1
+        
         count = 0
         for i in nums3:
             for j in nums4:
-                if -i-j in hash:
-                    count += hash[-i - j]
-        
-        return count
+                if - i - j in hash:
+                    count += hash[- i - j]
 
+        return count 
+    
 sol = Solution()
-res = sol.foursum(nums1 = [1,2], nums2 = [-2,-1], nums3 = [-1,2], nums4 = [0,2])
+res = sol.foursum(nums1 = [0], nums2 = [0], nums3 = [0], nums4 = [0])
 print(res)
