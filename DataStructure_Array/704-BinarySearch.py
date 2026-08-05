@@ -1,45 +1,32 @@
-# class Solution():
-#     def bs(self, nums:list[int], target:int):
-#         l = 0
-#         r = len(nums)
+# 给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target  ，写一个函数搜索 nums 中的 target，如果 target 存在返回下标，否则返回 -1。
 
-#         while l < r:
-#             mid = (l+r)//2
-#             if nums[mid] > target:
-#                 r = mid
-#             elif nums[mid] < target:
-#                 l = mid + 1
-#             else:
-#                 return mid
-        
-#         return -1
-    
+# 你必须编写一个具有 O(log n) 时间复杂度的算法。
+# n / 2^k = 1 -> k = log2(n)
 
-# solution_instance = Solution()
+# 示例 1:
 
-# nums1 = [-1,0,3,5,9,12]
+# 输入: nums = [-1,0,3,5,9,12], target = 9
+# 输出: 4
+# 解释: 9 出现在 nums 中并且下标为 4
+# 示例 2:
 
-# target1 = 9
-
-# res = solution_instance.bs(nums1, target1)
-
-# print(res)
-
-# 2023.9.20(9th)
+# 输入: nums = [-1,0,3,5,9,12], target = 2
+# 输出: -1
+# 解释: 2 不存在 nums 中因此返回 -1
 
 # class Solution():
 #     def bs(self, nums: list[int], target: int):
 #         l = 0
-#         r = len(nums) # 因为 // 2 是向下取整，所以
+#         r = len(nums) # 因为 // 2 是向下取整，所以 l = mid + 1 
+#         # 区间是 [l, r)
 #         while l < r:
 #             mid = (l + r)// 2
 #             if nums[mid] > target:
 #                 r = mid
 #             elif nums[mid] < target:
-#                 l = mid + 1 
+#                 l = mid + 1 # mid 已经确定不可能是答案，所以要把它排除掉。
 #             else:
 #                 return mid
-        
 #         return -1
 
 # sol = Solution()
@@ -63,8 +50,8 @@ print("当前时间是:", formatted_time)
 class Solution():
     def bs(self, nums: list[int], target: int):
         l = 0
-        r = len(nums)
-        while l < r: # l 最多遍历到 r-1 的位置
+        r = len(nums) #[l,r)
+        while l < r:
             mid = (l + r) // 2
             if nums[mid] < target:
                 l = mid + 1
@@ -72,11 +59,10 @@ class Solution():
                 r = mid
             else:
                 return mid
-        
         return -1
 
 sol = Solution()
-res = sol.bs(nums = [-1,0,3,5,9,12], target = 2)
+res = sol.bs(nums = [-1,0,3,5,9,12], target = 12)
 print(res)
             
             
