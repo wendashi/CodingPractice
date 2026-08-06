@@ -1,46 +1,35 @@
-# class Solution():
-#     def SquareSortedArray(self, nums:list[int]):
-#         l = 0
-#         r = len(nums)-1
-#         result = []
-#         while l < r+1:
-#             l_2 = nums[l] ** 2
-#             r_2 = nums[r] ** 2
-#             print(l_2, r_2)
-#             if l_2 < r_2:
-#                 result.append(r_2)
-#                 r -= 1
-#             else:
-#                 result.append(l_2)
-#                 l += 1
-            
-#         return result[::-1]
-    
-# sol_instance = Solution()
-# nums1 = [-4,-1,0,3,10]
-# nums2 = [-7,-3,2,3,11]
-# res = sol_instance.SquareSortedArray(nums2)
-# print(res)
-
 # 2023.9.20(9th)
+# 2026-08-06 11:40:38 (10th)
+import datetime
+
+# 获取当前的日期和时间
+current_time = datetime.datetime.now()
+
+# 将日期和时间格式化为字符串
+formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
+
+# 打印当前时间
+print("当前时间是:", formatted_time)
 
 class Solution():
-    def ssa(self, nums: list[int]):
-        l = 0 
-        r = len(nums) - 1
-        res = []
-        while l < r + 1:
-            l2 = nums[l] ** 2
-            r2 = nums[r] ** 2
-            if l2 > r2:
-                res.append(l2)
-                l += 1
+    def SquareSortedArray(self, nums: list[int]):
+        left = 0 
+        right = len(nums) - 1
+        result = []
+        # corner case nums = [1], 此时 right = 0
+        while left < right + 1:
+            left_squre = nums[left] ** 2
+            right_squre = nums[right] ** 2
+            # 两端的平方里， 一定能确定较大的那个
+            if left_squre > right_squre:
+                result.append(left_squre)
+                left += 1
             else:
-                res.append(r2)
-                r -= 1
+                result.append(right_squre)
+                right -= 1
         
-        return res[::-1]
+        return result[::-1]
 
 sol = Solution()
-res = sol.ssa(nums = [-4,-1,0,3,10])
-print(res)
+result = sol.SquareSortedArray(nums = [-4,-1,0,3,10])
+print(result)
