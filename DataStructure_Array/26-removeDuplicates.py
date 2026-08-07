@@ -10,6 +10,7 @@ formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
 print("当前时间是:", formatted_time)
 
 # 当前时间是: 2023-09-22 12:16:08
+# range 是左闭右开
 
 class Solution():
     def removeduplicate(self, nums: list[int]):
@@ -18,7 +19,6 @@ class Solution():
             if nums[fast] != nums[slow]:
                 slow += 1
                 nums[slow] = nums[fast]
-            fast += 1
         
         return slow + 1
 
