@@ -9,7 +9,8 @@ formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
 # 打印当前时间
 print("当前时间是:", formatted_time)
 
-# 当前时间是: 2023-09-26 14:54:38 (8th)
+# 2023-09-26 14:54:38 (8th)
+# 2026-08-06 12:20:30 (9th)
 
 class Solution():
     def mmsss(self, target: int, nums: list[int]):
