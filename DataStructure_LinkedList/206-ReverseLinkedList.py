@@ -5,7 +5,7 @@
 #         self.val = val
 #         self.next = next
 
-# class Solution():#迭代
+# class Solution():#递归
 #     def rever(self, head):
 #         # pre = None
 #         # cur = head
