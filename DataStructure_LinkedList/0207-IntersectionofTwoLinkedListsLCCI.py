@@ -67,8 +67,8 @@ class Solution():
         curA = headA
         curB = headB
         while curA != curB:
-            curA = curA.next if curA is not None else headB
-            curB = curB.next if curB is not None else headA
+            curA = curA.next if curA else headB
+            curB = curB.next if curB else headA
         
         return curA
 
