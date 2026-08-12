@@ -23,41 +23,6 @@
 #         print(cur.val, end='->')
 #         cur = cur.next
 
-# def createIntersectingLists(intersectVal, listA, listB, skipA, skipB):
-#     intersect_node = ListNode(intersectVal)
-#     cur = intersect_node
-#     for val in listA[skipA+1:]:
-#         print(val)
-#         cur.next = ListNode(val)
-#         cur = cur.next
-
-#     headA = ListNode(listA[0])
-#     current_A = headA
-#     for val in listA[1:skipA]:
-#         current_A.next = ListNode(val)
-#         current_A = current_A.next
-    
-#     current_A.next = intersect_node
-#     # print('headA1')
-#     # print_ll(headA)
-#     # print('\n','intersect_nodeA1')
-#     # print_ll(intersect_node)
-
-#     headB = ListNode(listB[0])
-#     current_B = headB
-#     for val in listB[1:skipB]:
-#         current_B.next = ListNode(val)
-#         current_B = current_B.next
-    
-#     current_B.next = intersect_node
-
-#     # print('\n', 'headB1')
-#     # print_ll(headB)
-#     # print('\n', 'intersect_nodeB1')
-#     # print_ll(intersect_node)
-
-#     return headA, headB, intersect_node
-
 # # Example values
 # intersectVal = 8
 # listA = [4, 1, 8, 4, 5]
@@ -65,8 +30,6 @@
 # skipA = 2
 # skipB = 3
 
-# # Create intersecting lists
-# headA, headB , intersect_node= createIntersectingLists(intersectVal, listA, listB, skipA, skipB)
 
 # print('headA:')
 # print_ll(headA)
@@ -83,6 +46,15 @@
 
 # 2023.9.20(6th)
 
+# 给你两个单链表的头节点 headA 和 headB ，请你找出并返回两个单链表相交的起始节点。如果两个链表没有交点，返回 null 。
+
+# 输入：intersectVal = 8, listA = [4,1,8,4,5], listB = [5,0,1,8,4,5], skipA = 2, skipB = 3
+# 输出：Intersected at '8'
+# 解释：相交节点的值为 8 （注意，如果两个链表相交则不能为 0）。
+# 从各自的表头开始算起，链表 A 为 [4,1,8,4,5]，链表 B 为 [5,0,1,8,4,5]。
+# 在 A 中，相交节点前有 2 个节点；在 B 中，相交节点前有 3 个节点。
+
+
 class ListNode():
     def __init__(self, val = 0, next = None) -> None:
         self.val = val
@@ -90,6 +62,8 @@ class ListNode():
 
 class Solution():
     def intersect(self, headA: ListNode, headB: ListNode):
+        # curA 先走 A 再走 B， curB 先走 B 再走 A。这样两个人总路程都变成 A长度 + B长度
+        # 因为循环退出条件是 curA == curB ，所以退出时 curA 和 curB 指向的是 同一个东西 ，要么是相交节点，要么是 None ，
         curA = headA
         curB = headB
         while curA != curB:

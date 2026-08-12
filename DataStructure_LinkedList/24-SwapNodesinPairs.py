@@ -52,29 +52,11 @@
 
 # print_ll(res)
 
-#2023.9.20 (6th)
+# 2023.9.21(7th)
+# 2026.8.12(8th)
 
-# class ListNode():
-#     def __init__(self, val = 0, next = None) -> None:
-#         self.val = val
-#         self.next = next
-
-# class Solution():
-#     def swap(self, head):
-#         dummy = ListNode(next = head)
-#         cur = dummy
-#         while cur.next and cur.next.next:
-#             temp1 = cur.next
-#             temp2 = cur.next.next
-
-#             cur.next = cur.next.next
-#             cur.next.next = temp1
-#             temp1.next = temp2
-#             cur = cur.next.next
-
-#         return dummy.next
-
-#2023.9.21(7th)
+# https://leetcode.cn/problems/swap-nodes-in-pairs/description/
+# 给你一个链表，两两交换其中相邻的节点，并返回交换后链表的头节点。你必须在不修改节点内部的值的情况下完成本题（即，只能进行节点交换）。
 
 class ListNode():
     def __int__(self, val = 0, next = None):
@@ -95,4 +77,5 @@ class Solution():
             temp1.next = temp2
             cur = cur.next.next
 
+        # head 是原始的头节点，没改它
         return dummy.next
