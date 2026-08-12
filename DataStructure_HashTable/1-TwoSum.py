@@ -1,52 +1,21 @@
-# class Solution():
-#     def twoSum(self, nums: list, target: int):
-#         hashtable = {}
-#         for i, num in enumerate(nums):
-#             if target - num in hashtable:
-#                 return [hashtable[target - num], i]
-            
-#             hashtable[nums[i]] = i
-        
-#         return []
-    
-# nums1 = [2,7,11,15]
-# target1 = 9
+# 给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target  的那 两个 整数，并返回它们的数组下标。
 
-# sol = Solution()
-# res = sol.twoSum(nums1, target1)
+# 你可以假设每种输入只会对应一个答案，并且你不能使用两次相同的元素。
 
-# print(res)
+# 你可以按任意顺序返回答案。
 
-#2023.9.17 (6th)
-# class Solution():
-#     def twosum(self, nums: list[int], target: int):
-#         hash = {}
+# 示例 1：
+# 输入：nums = [2,7,11,15], target = 9
+# 输出：[0,1]
+# 解释：因为 nums[0] + nums[1] == 9 ，返回 [0, 1] 。
 
-#         for i, num in enumerate(nums):
-#             if target - i in hash.keys():
-#                 return [hash[i] , hash[target - i]]
-            
-#             hash[num] = i
-        
-# sol = Solution()
-# res = sol.twosum(nums = [2,7,11,15], target = 9)
-# print(res)
+# 示例 2：
+# 输入：nums = [3,2,4], target = 6
+# 输出：[1,2]
 
-#2023.9.19 (7th)
-# class Solution():
-#     def twoSum(self, nums: list[int], target: int):
-#         hash = {}
-#         for i, num in enumerate(nums):
-#             if target - num in hash:
-#                 return [hash[target - num], i]
-#             else:
-#                 hash[num] = i
-        
-#         return None
-
-# sol = Solution()
-# res = sol.twoSum(nums = [2,7,11,15], target = 9)
-# print(res)
+# 示例 3：
+# 输入：nums = [3,3], target = 6
+# 输出：[0,1]
 
 import datetime
 
@@ -63,14 +32,23 @@ print("当前时间是:", formatted_time)
 
 class Solution():
     def twosum(self, nums: list[int], target: int):
+        # 先用字典把 '值(作为键) -> 下标(作为值)' 记下来
         hash = {}
         for i, num in enumerate(nums):
             hash[num] = i
-
-        for j in range(len(nums)):
-            if target - nums[j] in hash.keys() and j != hash[target - nums[j]]:
-                return [j, hash[target - nums[j]]]
         
+        # 然后再遍历一遍数组，对每个 nums[j] 去找 target - nums[j] 在不在字典里；
+        # 如果在，而且不是同一个下标，就找到答案了。        
+        for j in range(len(nums)):
+            # 两个加起来和是 target
+            left = target - nums[j]
+            # 不能拿同一个位置的元素用两遍
+            if left in hash and hash[left] != j:
+                return [j, hash[left]]
+
+# 时间复杂度： O(n)
+# 空间复杂度： O(n), 因为额外用了一个字典来存 值 -> 下标 。
+
 sol = Solution()
-res = sol.twosum(nums = [3,3], target = 6)
+res = sol.twosum(nums = [3,7,8,3], target = 6)
 print(res)
