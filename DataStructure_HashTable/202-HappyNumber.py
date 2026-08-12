@@ -1,106 +1,30 @@
-# class Solution():
-#     def happynumber(self, n:int):
+# 编写一个算法来判断一个数 n 是不是快乐数。
 
-#         record = set()
+# 「快乐数」 定义为：
 
-#         while n not in record:
-#             record.add(n)
-#             new_n = 0
-#             n_str = str(n)
+# 对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和。
+# 然后重复这个过程直到这个数变为 1，也可能是 无限循环 但始终变不到 1。
+# 如果这个过程 结果为 1，那么这个数就是快乐数。
+# 如果 n 是 快乐数 就返回 true ；不是，则返回 false 。
 
-#             for i in n_str:
-#                 new_n += int(i) ** 2
+# 示例 1：
 
-#             if new_n == 1:
-#                 return True
-#             else:
-#                 n = new_n 
+# 输入：n = 19
+# 输出：true
 
-#         return False
+# 解释：
+# 1^2 + 9^2 = 82
+# 8^2 + 2^2 = 68
+# 6^2 + 8^2 = 100
+# 1^2 + 0^2 + 0^2 = 1
 
-# n1 = 19
-# n2 = 2    
-# sol = Solution()
-# res = sol.happynumber(n2)
-# print(res)
-
-#2023.9.17（6th）
-
-# class Solution():
-#     def happynum(self, n: int):
-#         nset = set()
-
-#         while n not in nset:
-#             nset.add(n)
-#             new_n = 0
-
-#             for i in str(n):
-#                 new_n += int(i) ** 2
-            
-#             if new_n == 1:
-#                 return True
-#             else:
-#                 n = new_n
-            
-#         return False
-
-# sol = Solution()
-# res = sol.happynum(n = 19)
-# print(res)
-
-# 2023.9.18 (7th)
-
-# class Solution():
-#     def happynum(self, n: int):
-#         seen = set()
-#         # new_n = 0
-
-#         while n not in seen:
-#             seen.add(n)
-#             new_n = 0 #每次都需要从 0 开始，因为
-
-#             for i in str(n):
-#                 new_n += int(i) ** 2
-            
-#             print(new_n)
-#             # 算出来结果之后再判断
-#             if new_n == 1:
-#                 return True
-#             else:
-#                 n = new_n
-    
-#         return False
-
-# sol = Solution()
-# res = sol.happynum( n = 7)
-# print(res)
-
-# 2023.9.19(8th)
-
-# class Solution():
-#     def happynum(self, n: int):
-#         seen = set()
-
-#         while n not in seen:
-#             seen.add(n)
-#             print('n', n)
-#             new_n = 0 # 每次算完后，再等于 0 、清空
-#             for i in str(n):
-#                 new_n += int(i) ** 2
-            
-#             print('new_n', new_n)
-#             if new_n == 1:
-#                 return True
-            
-#             else:
-#                 n = new_n
-
-#         return False
+# 示例 2：
+# 输入：n = 2
+# 输出：false
 
 
-# sol = Solution()
-# res = sol.happynum(n = 3)
-# print(res)
+from typing import Any
+
 
 import datetime
 
@@ -116,17 +40,17 @@ print("当前时间是:", formatted_time)
 # 当前时间是: 2023-09-29 19:47:00（9th）    
 class Solution():
     def hn(self, n: int):
-        res = []
+        # 记录出现过的结果；一旦重复，就说明进环了
+        seen = set()
+        # list 查找是 顺着一个个比 ，最坏要把整个列表看完；
+        # 而 set 底层是 哈希表 ，可以根据值直接快速定位。
         while n != 1:
-            print('n', n )
             new_n = 0
             for i in str(n):
-                print('i', i)
                 new_n += int(i) ** 2
-            if new_n not in res:
-                res.append(new_n)
-            elif new_n != 1 and new_n in res:
-                return False   
+            if new_n in seen:
+                return False
+            seen.add(new_n)
             n = new_n
 
         return True
