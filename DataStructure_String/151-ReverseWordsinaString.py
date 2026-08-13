@@ -1,50 +1,24 @@
-# class Solution():
-#     def reverwords(self, s: str):
-#         words = s.split()
-#         words[:] = words[::-1]
+# 给你一个字符串 s ，请你反转字符串中 单词 的顺序。
 
-#         return ' '.join(words)
-    
-# sol = Solution()
-# res = sol.reverwords(s = "the sky is blue")
-# print(res)
+# 单词 是由非空格字符组成的字符串。s 中使用至少一个空格将字符串中的 单词 分隔开。
 
-# 时间复杂度分析：
+# 返回 单词 顺序颠倒且 单词 之间用单个空格连接的结果字符串。
 
-# words = s.split(): 这一行代码使用字符串的 split() 方法将输入字符串 s 拆分成单词列表。拆分操作的时间复杂度取决于字符串中包含的单词数量和单词的平均长度，通常为 O(n)，其中 n 是字符串的长度。
+# 注意：输入字符串 s中可能会存在前导空格、尾随空格或者单词间的多个空格。返回的结果字符串中，单词间应当仅用单个空格分隔，且不包含任何额外的空格。
 
-# words[:] = words[::-1]: 这一行代码使用了切片操作来反转单词列表 words 中的元素。切片操作 words[::-1] 的时间复杂度是 O(n)，其中 n 是单词列表的长度。
+# 示例 1：
+# 输入：s = "the sky is blue"
+# 输出："blue is sky the"
 
-# 最后，通过 ' '.join(words) 将单词列表中的元素连接成一个字符串。连接操作的时间复杂度也是 O(n)，其中 n 是单词列表中所有单词字符的总数。
+# 示例 2：
+# 输入：s = "  hello world  "
+# 输出："world hello"
+# 解释：反转后的字符串中不能存在前导空格和尾随空格。
 
-# 总体来说，这个函数的时间复杂度主要由拆分操作、切片操作和连接操作决定，都是线性的，因此总时间复杂度为 O(n)。
-
-# 空间复杂度分析：
-
-# words = s.split(): 这一行代码创建了一个单词列表 words，它的空间复杂度取决于字符串中包含的单词数量和单词的平均长度。通常，空间复杂度为 O(n)，其中 n 是字符串的长度。
-
-# words[:] = words[::-1]: 这一行代码并没有创建额外的数据结构，而是原地修改了单词列表 words 的内容，因此没有额外的空间开销。
-
-# join() 方法创建了一个新的字符串，其中包含单词列表 words 中的所有单词字符。这个新字符串的空间复杂度取决于单词列表中所有单词字符的总数，通常也是 O(n)，其中 n 是字符串的长度。
-
-# 总体来说，这个函数的空间复杂度主要由单词列表 words 和新创建的连接后的字符串决定，通常为 O(n)。由于没有创建额外的数据结构，空间复杂度相对较低。
-
-
-# class Solution():
-#     def reverseword(self, s: str):
-#         words = s.split()
-#         l = 0
-#         r = len(words) - 1
-#         while l < r:
-#             words[l], words[r] = words[r], words[l]
-#             l += 1
-#             r -= 1
-        
-#         return ' '.join(words) 
-    
-# sol = Solution()
-# res = sol.reverseword(s = "a good   example")
-# print(res)
+# 示例 3：
+# 输入：s = "a good   example"
+# 输出："example good a"
+# 解释：如果两个单词间有多余的空格，反转后的字符串需要将单词间的空格减少到仅有一个。
 
 # 时间复杂度分析：
 
@@ -64,17 +38,6 @@
 
 # 因此，总体来说，这个函数的空间复杂度主要由单词列表 words 决定，通常为 O(n)。
 
-# 2023.9.16(6th)
-
-# class Solution():
-#     def reverseword(self, s: str):
-#         sl = s.split()
-#         res = sl[::-1]
-#         return ' '.join(res)
-
-# sol = Solution()
-# res = sol.reverseword(s = "the sky is blue")
-# print(res)
 
 import datetime
 
@@ -88,14 +51,22 @@ formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
 print("当前时间是:", formatted_time)
 
 # 当前时间是: 2023-09-29 16:08:53(7th)
+# 2026-08-13 16:40:39 (8th)
 
 class Solution():
-    def reverword(self, s: str):
+    def reverseWords(self, s: str):
         res = []
+        # split() 也是 字符串的方法， 把一个字符串拆成列表。
+        # 如果没写参数, 按任意空白字符分割，包括空格、换行、制表符
+        # 而且会自动忽略两端和中间多余的连续空格。
         words = s.split()
         res[:] = words[::-1]
+        print('res', res)
+        # join 是 字符串的方法。用法为 '分隔符'.join(一组字符串)
+        # 在这一组字符串中间插入“分隔符”，然后拼成一个大字符串。
         return ' '.join(res)
 
 sol = Solution()
-res = sol.reverword(s = "the sky is blue")
+res = sol.reverseWords(s = "the sky is blue")
 print(res)
+

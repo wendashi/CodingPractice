@@ -1,82 +1,28 @@
-# class Solution():
-#     def Sum3(self, nums: list[int]):
-#         nums.sort()
-#         result = []
-#         for i in range(len(nums)):
-#             if nums[i] > 0 :
-#                 return result
-            
-#             if i > 0 and nums[i] == nums[i-1]:
-#                 continue # continue 关键字用于跳过当前循环中的剩余代码，并继续下一次循环的执行
+# 给你一个整数数组 nums ，判断是否存在三元组 [nums[i], nums[j], nums[k]] 满足 i != j、i != k 且 j != k ，同时还满足 nums[i] + nums[j] + nums[k] == 0 。请你返回所有和为 0 且不重复的三元组。
 
-#             left = i + 1
-#             right = len(nums) - 1
+# 注意：答案中不可以包含重复的三元组。
 
-#             while left < right:
+# 示例 1：
+# 输入：nums = [-1,0,1,2,-1,-4]
+# 输出：[[-1,-1,2],[-1,0,1]]
+# 解释：
+# nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0 。
+# nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0 。
+# nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0 。
+# 不同的三元组是 [-1,0,1] 和 [-1,-1,2] 。
+# 注意，输出的顺序和三元组的顺序并不重要。
 
-#                 sum3 = nums[i] + nums[left] + nums[right]
+# 示例 2：
+# 输入：nums = [0,1,1]
+# 输出：[]
+# 解释：唯一可能的三元组和不为 0 。
 
-#                 if sum3 > 0:
-#                     right -= 1
-#                 elif sum3 < 0:
-#                     left += 1
-#                 else:
-#                     result.append([nums[i], nums[left], nums[right]])
+# 示例 3：
+# 输入：nums = [0,0,0]
+# 输出：[[0,0,0]]
+# 解释：唯一可能的三元组和为 0 。
 
-#                     while left < right and nums[right] == nums[right - 1]:
-#                         right -= 1
-#                     while left < right and nums[left] == nums[left + 1]:
-#                         left += 1
-#                     right -= 1
-#                     left += 1
-        
-#         return result
-    
-# sol = Solution()
-# res = sol.Sum3(nums = [-1,0,1,2,-1,-4])
-# print(res)
-
-# class Solution():
-#     def sumof3nums(self, nums: list[int]):
-#         nums.sort()
-
-#         result = []
-
-#         for i in range(len(nums)):
-#             if nums[i] > 0:
-#                 return result
-            
-#             if i > 0 and nums[i] == nums[i - 1]:#i 与 i 的左边去比，left 在 i 的右边
-#                 continue
-        
-#             left = i + 1
-#             right = len(nums) - 1
-
-#             while left < right:
-#                 print(i, left, right)
-#                 print(nums[i], nums[left], nums[right])
-#                 sumof3 = nums[i] + nums[left] + nums[right] #调节
-
-#                 if sumof3 < 0:
-#                     left += 1
-#                 elif sumof3 > 0:
-#                     right -= 1
-#                 else: 
-#                     result.append([nums[i], nums[left], nums[right]])
-                
-#                     while left < right and nums[left] == nums[left + 1]: #同上
-#                         left += 1
-#                     while left < right and nums[right] == nums[right - 1]:
-#                         right -= 1
-#                     # 不论如何都要移动，可以移动一个，但移动两个更快
-#                     left += 1
-#                     right -= 1
-                
-#         return result
-
-# sol = Solution()
-# res = sol.sumof3nums(nums = [1,-1,-1,0])
-# print(res)
+# 2023.9.17（6th）  
 
 # 时间复杂度分析：
 
@@ -90,44 +36,6 @@
 
 # 由于 result 列表只存储最终的结果，而不会随着输入规模的增加而线性增长，所以空间复杂度是 O(1)
 
-# 2023.9.17（6th）  
-
-# class Solution():
-#     def sumof3(self, nums: list[int]):
-#         nums.sort()
-#         res = []
-
-#         for i in range(len(nums)):
-#             if nums[i] > 0:
-#                 return res
-
-#             if i > 0 and nums[i] == nums[i - 1]:
-#                 continue
-
-#             l = i + 1
-#             r = len(nums) - 1
-
-#             while l < r:
-#                 sum = nums[i] + nums[l] + nums[r]
-#                 if sum < 0 :
-#                     l += 1
-#                 elif sum > 0 :
-#                     r -= 1
-#                 else:
-#                     res.append([nums[i], nums[l], nums[r]])
-
-#                     while l < r and nums[l] == nums[l + 1]:
-#                         l += 1
-#                     while l < r and nums[r] == nums[r - 1]:
-#                         r -= 1
-#                     l += 1
-#                     r -= 1
-        
-#         return res
-    
-# sol = Solution()
-# res = sol.sumof3(nums = [-1,0,1,2,-1,-4])
-# print(res)
 
 import datetime
 
@@ -142,40 +50,86 @@ print("当前时间是:", formatted_time)
 
 # 当前时间是: 2023-09-29 20:42:41 (7th)
 
-class Solution():
-    def threesum(self, nums: list[int]):
-        nums.sort()
-        res = []
+# class Solution():
+#     def threesum(self, nums: list[int]):
+#         # 先排序，让“和太大就右指针左移、和太小就左指针右移”成立
+#         nums.sort()
+#         res = []
 
+#         for i in range(len(nums)):
+#             # 排完序后，当前最小数都已经大于 0 ，后面三个数之和不可能再等于 0
+#             if nums[i] > 0:
+#                 return res
+            
+#             # 在“第一层”去重，避免同样的起点重复算
+#             if i > 0 and nums[i - 1] == nums[i]:
+#                 continue
+            
+#             # 双指针
+#             l = i + 1
+#             r = len(nums) - 1
+
+#             while l < r:
+#                 sum = nums[i] + nums[l] + nums[r]
+
+#                 # 和太大就右指针左移、和太小就左指针右移
+#                 if sum > 0 :
+#                     r -= 1
+#                 elif sum < 0:
+#                     l += 1
+#                 else:
+#                     res.append([nums[i], nums[l], nums[r]])
+
+#                     # 规避左右指针的重复值
+#                     while l < r and nums[l + 1] == nums[l]:
+#                         l += 1
+#                     while l < r and nums[r - 1] == nums[r]:
+#                         r -= 1
+#                     l += 1
+#                     r -= 1
+            
+#         return res
+
+
+class Solution:
+    def threeSum(self, nums: list[int]) -> list[list[int]]:
+        res = []
+        nums.sort()
+
+        # 第一个数-i -> 另外两个数-双指针[如果小，左指针就右移，如果大，右指针就左移]
+        
         for i in range(len(nums)):
             if nums[i] > 0:
-                return res
-            
+                break 
+
             if i > 0 and nums[i - 1] == nums[i]:
                 continue
 
-            l = i + 1
-            r = len(nums) - 1
+            left = i + 1
+            right = len(nums) - 1
 
-            while l < r:
-                sum = nums[i] + nums[l] + nums[r]
+            while left < right:
+                sum = nums[i] + nums[left] + nums[right]
 
-                if sum > 0 :
-                    r -= 1
+                if sum > 0:
+                    right -= 1
                 elif sum < 0:
-                    l += 1
+                    left += 1
                 else:
-                    res.append([nums[i], nums[l], nums[r]])
+                    res.append([nums[i], nums[left], nums[right]])
 
-                    while l < r and nums[l + 1] == nums[l]:
-                        l += 1
-                    while l < r and nums[r - 1] == nums[r]:
-                        r -= 1
-                    l += 1
-                    r -= 1
-            
+                    while left < right and nums[left] == nums[left + 1]:
+                        left += 1
+                    while left < right and nums[right] == nums[right - 1]:
+                        right -= 1
+
+                    left += 1
+                    right -= 1
+
         return res
+                
+
 
 sol = Solution()
-res = sol.threesum(nums = [-1,0,1,2,-1,-4])
+res = sol.threeSum(nums = [-1,0,1,2,-1,-4])
 print(res)
