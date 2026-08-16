@@ -1,94 +1,19 @@
-# from collections import deque
+# https://leetcode.cn/problems/implement-stack-using-queues/description/
+# 请你仅使用两个队列实现一个后入先出（LIFO）的栈，并支持普通栈的全部四种操作（push、top、pop 和 empty）。
 
-# class Mystack():
-#     def __init__(self) -> None:
-#         self.queue = deque()
+# 实现 MyStack 类：
 
-#     def push(self, x: int):
-#         self.queue.append(x)
-    
-#     def pop(self):
-#         if self.empty():
-#             return None
-#         else:
-#             for i in range(len(self.queue) - 1):
-#                 self.queue.append(self.queue.popleft())
-#             return self.queue.popleft() 
-#         # else:
-#         #    return self.que.pop()
-    
-#     def top(self):
-#         if self.empty():
-#             return None
-#         else:
-#             return self.queue[-1]
-        
-#     def empty(self):
-#         if self.queue:
-#             return False
-#         else:
-#             return True
-#         # return not self.queue
+# void push(int x) 将元素 x 压入栈顶。
+# int pop() 移除并返回栈顶元素。
+# int top() 返回栈顶元素。
+# boolean empty() 如果栈是空的，返回 true ；否则，返回 false 。
+ 
 
-#     def __str__(self) -> str:
-#         return f'Mystack:{self.queue}'
+# 注意：
 
-# stack1 = Mystack()
+# 你只能使用队列的标准操作 —— 也就是 push to back、peek/pop from front、size 和 is empty 这些操作。
+# 你所使用的语言也许不支持队列。 你可以使用 list （列表）或者 deque（双端队列）来模拟一个队列 , 只要是标准的队列操作即可。
 
-# stack1.push(1)
-# print(stack1)
-
-# stack1.push(2)
-# print(stack1)
-
-# res1 = stack1.top()
-# print(res1)
-
-# res2 = stack1.pop()
-# print(res2)
-
-# res3 = stack1.empty()
-# print(res3)
-
-# from collections import deque
-
-# class Mystack():
-#     def __init__(self) -> None:
-#         self.que = deque()
-
-#     def push(self, x: int):
-#         self.que.append(x)
-    
-#     def pop(self):
-#         if self.empty():
-#             return None
-#         else:
-#             return self.que.pop()
-        
-#     def top(self):
-#         if self.empty():
-#             return None
-#         else:
-#             ans = self.que.pop()
-#             self.que.append(ans)
-#             return ans
-    
-#     def empty(self):
-#         return not self.que
-
-# stack = Mystack()
-
-# stack.push(1)
-# stack.push(2)
-
-# res1 = stack.top()
-# print(res1)
-
-# res2 = stack.pop()
-# print(res2)
-
-# res3 = stack.empty()
-# print(res3)
 
 # 1. 因为deque的pop操作也是常数时间；
 # 2. 通过deque来存储元素，空间复杂度不会随着元素数量的增加而线性增加，因为deque是一个动态数组，它会根据需要自动扩展其内部数组的大小。
