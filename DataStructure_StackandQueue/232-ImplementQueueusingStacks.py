@@ -11,8 +11,6 @@
 # 你 只能 使用标准的栈操作 —— 也就是只有 push to top, peek/pop from top, size, 和 is empty 操作是合法的。
 # 你所使用的语言也许不支持栈。你可以使用 list 或者 deque（双端队列）来模拟一个栈，只要是标准的栈操作即可。
  
-
-
 # 时间复杂度： push，empty：O(1); pop(),peek() : O(n)
 # 空间复杂度： O(n)
 
@@ -32,8 +30,14 @@ print("当前时间是:", formatted_time)
 
 class MyQueue():
     def __init__(self) -> None:
-        self.stack_in = []
-        self.stack_out = []
+        # stack_in 只管收新元素
+        # stack_out 只管吐最旧元素  
+  
+        # 当 stack_in 里的元素整体倒到 stack_out 时，顺序会反过来，于是 最早进入队列的元素 就跑到 stack_out 顶部，刚好可以先出。
+
+        # 所以本质上是： 一个栈负责“积累输入”，另一个栈负责“维护队头顺序”。
+        self.stack_in = [] # [1, 2, 3]
+        self.stack_out = [] # [3, 2, 1]
 
     def push(self, x: int):
         self.stack_in.append(x)
@@ -58,6 +62,15 @@ class MyQueue():
         self.stack_out.append(ans)
         
         return ans
+
+        # if self.stack_out:
+        #     return self.stack_out[-1]
+
+        # else:
+        #     while self.stack_in:
+        #         temp = self.stack_in.pop()
+        #         self.stack_out.append(temp)
+        #     return self.stack_out[-1]
 
     def empty(self):
         return not(self.stack_in or self.stack_out)

@@ -1,74 +1,30 @@
-# class Solution():
-#     def vp(self, s:  str):
-#         stack = []
+# 给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串 s ，判断字符串是否有效。
 
-#         for i in s:
-#             print(stack)
-#             if i == '(':
-#                 stack.append(')')
-#             elif i == '[':
-#                 stack.append(']')
-#             elif i == '{':
-#                 stack.append('}')
-#             # elif not stack or stack[-1] != i:
-#             #     return False
-#             # else:
-#             #     stack.pop()
-#             # else 分支中的 stack.pop() 操作将在每次执行 else 时都执行
-#             else:
-#                 if not stack or i != stack.pop(): 
-#                     return False    
-                
-#         return True if not stack else False
+# 有效字符串需满足：
 
-# sol = Solution()
+# 左括号必须用相同类型的右括号闭合。
+# 左括号必须以正确的顺序闭合。
+# 每个右括号都有一个对应的相同类型的左括号。
 
-# res = sol.vp(s = '(()))')
+# 示例 1：
+# 输入：s = "()"
+# 输出：true
 
-# print(res)
+# 示例 2：
+# 输入：s = "()[]{}"
+# 输出：true
 
-# 2023.9.7(5th)
+# 示例 3：
+# 输入：s = "(]"
+# 输出：false
 
-# class Solution():
-#     def validparentheses(self, s: str):
-#         stack = []
-#         for i in s:
-#             if i == '(':
-#                 stack.append(')')
-#             elif i == '[':
-#                 stack.append(']')
-#             elif i == '{':
-#                 stack.append('}')
-#             else:
-#                 if not stack or i != stack.pop():
-#                     return False
-        
-#         return True if not stack else False
+# 示例 4：
+# 输入：s = "([])"
+# 输出：true
 
-# sol = Solution()
-# res = sol.validparentheses(s = "[()]")
-# print(res)
-
-# 2023.9.12(6th)
-# class Solution():
-#     def validparenthese(self, s: str):
-#         stack = []
-#         for i in s:
-#             if i == '(':
-#                 stack.append(')')
-#             elif i == '[':
-#                 stack.append(']')
-#             elif i == '{':
-#                 stack.append('}')
-#             else:
-#                 if not stack or i != stack.pop():
-#                     return False
-        
-#         return False if stack else True
-
-# sol = Solution()
-# res = sol.validparenthese(s = "()[]{}")
-# print(res)
+# 示例 5：
+# 输入：s = "([)]"
+# 输出：false
 
 # 时间复杂度：O(n)
 # 空间复杂度：O(n)
@@ -89,23 +45,27 @@ from collections import deque
 
 # 当前时间是: 2023-09-29 09:35:44（7th）
 
-class Solution():
-    def vp(self, s: str):
+class Solution:
+    def isValid(self, s: str) -> bool:
+        # False: 1)左括号多，2)右括号更多，3)左右不匹配
         stack = []
-
         for i in s:
-            print(stack)
-            if i == '(':
-                stack.append(')')
-            elif i == '[':
-                stack.append(']')
-            elif i == '{':
-                stack.append('}')
-            elif not stack or i != stack.pop():
-            # elif i != stack.pop() or not stack:
-                return False
+            if i in '([{':      # 左括号进栈
+                stack.append(i)
             
-        return True if not stack else False
+            else:
+                
+                if not stack:  #  右括号更多
+                    return False
+
+                top = stack.pop()
+                # 左右不匹配
+                if (i == ')' and top != '(' ) or \
+                    (i == ']' and top != '[' ) or \
+                    (i == '}' and top != '{' ):
+                    return False
+
+        return not stack # 最后得是空的，不然就是左括号多
     
 sol = Solution()
 res = sol.vp(s = '((()))')
