@@ -1,88 +1,23 @@
-# from operator import add, sub, mul
+# 给你一个字符串数组 tokens ，表示一个根据 逆波兰表示法 表示的算术表达式。
 
-# class Solution():
-#     op_map = {'+': add, '-': sub, '*': mul, '/': lambda x, y: int(x / y)}
-    
-#     def ERP(self, tokens: list[str]):
-#         stack = []
+# 请你计算该表达式。返回一个表示表达式值的整数。
 
-#         for i in tokens:
-#             if i not in ('+', '-', '*', '/'):
-#                 stack.append(int(i))
-#             else:
-#                 op2 = stack.pop()
-#                 op1 = stack.pop()
-#                 stack.append(self.op_map[i](op1, op2))
-        
+# 注意：
 
-#         return stack.pop()
-    
-# sol = Solution()
-# res = sol.ERP(tokens = ["2","1","+","3","*"])
-# print(res)
-
-#2023.9.7(5th)
-
-# from operator import add, sub, mul
-
-# class Solution():
-#     op_map = {'+': add, '-': sub, '*': mul, '/': lambda x, y: int(x / y)}
-
-#     def ERP(self, tokens: list[str]):
-#         stack = []
-
-#         for i in tokens:
-#             if i in self.op_map:
-#                 op1 = int(stack.pop())
-#                 op2 = int(stack.pop())
-#                 ans = self.op_map[i](op2 , op1)
-#                 stack.append(ans)
-#             else:
-#                 stack.append(int(i))
-
-#         return stack.pop()
-
-# sol = Solution()
-# res = sol.ERP(tokens = ["10","6","9","3","+","-11","*","/","*","17","+","5","+"])
-# print(res)
+# 有效的算符为 '+'、'-'、'*' 和 '/' 。
+# 每个操作数（运算对象）都可以是一个整数或者另一个表达式。
+# 两个整数之间的除法总是 向零截断 。
+# 表达式中不含除零运算。
+# 输入是一个根据逆波兰表示法表示的算术表达式。
+# 答案及所有中间计算结果可以用 32 位 整数表示。
 
 # 2023.9.12（6th）
 
-# from operator import add, sub, mul
-
-# class Solution():
-#     hash1 = {'+': add, '-': sub, '*': mul, '/': lambda x,y: int(x / y)}
-
-#     def erp(self, tokens: list[str]):
-#         stack = []
-#         for i in tokens:
-#             if i in self.hash1:
-#                 op1 = int(stack.pop())
-#                 op2 = int(stack.pop())
-#                 res = self.hash1[i](op2, op1)
-#                 stack.append(res)
-#             else:
-#                 stack.append(int(i))
-        
-#         return stack.pop()
-
-# sol = Solution()
-# res = sol.erp(tokens = ["4","13","5","/","+"])
-# print(res)
-
-# 时间复杂度：O(n) ；空间复杂度：O(n)
-# 时间复杂度分析：循环次数+循环中的操作
-
+# 时间复杂度：O(n) 
 # 在函数中，我们使用一个循环来迭代处理输入的字符串列表 tokens，其长度为 n。
-# 在循环内部，我们检查每个字符串是否为运算符（+、-、*、/）或操作数。这些操作的时间复杂度都是O(1)，因为它们只涉及基本的算术运算和栈操作。
-# 在循环中，我们使用栈 stack 来存储操作数和中间结果。每个元素都会被压入栈一次，然后最终弹出。因此，循环中的操作次数是线性的，与输入列表的大小 n 相关。
-# 总体来说，循环内的操作次数是O(n)，因此时间复杂度为O(n)。
-# 空间复杂度分析：
 
-# 在函数中，我们使用了一个栈 stack 来存储操作数和中间结果。
+# 空间复杂度分析：
 # 栈 stack 的最大可能大小取决于输入列表 tokens 中的元素数量。在最坏的情况下，当输入的逆波兰表达式是有效的且没有多余的操作符时，栈的大小会达到 n/2，其中 n 是输入列表 tokens 的长度。
-# 因此，栈 stack 的空间复杂度是O(n)。
-# 综上所述，这个函数的时间复杂度是O(n)，空间复杂度也是O(n)，其中 n 是输入列表 tokens 的长度。这是因为在最坏情况下，栈的大小会达到输入列表长度的一半。
 
 import datetime
 
@@ -95,24 +30,48 @@ formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
 # 打印当前时间
 print("当前时间是:", formatted_time)
 
-from operator import add, sub, mul
+from typing import List
 
-class Solution():
-    op_map = {'+': add, '-': sub, '*': mul, '/': lambda x, y : int(x / y)}
-
-    def erp(self, tokens: list[str]):
+class Solution:
+    def erp(self, tokens: List[str]) -> int:
         stack = []
-        for i in tokens:
-            print('i:', i,'stack:', stack)
-            if i not in ['+', '-', '*', '/']:
-                stack.append(i)
+
+        # 2) 用集合快速判断当前 token 是否是运算符
+        ops = {"+", "-", "*", "/"}
+
+        def div_towards_zero(a: int, b: int) -> int:
+            # 3) Python // 是向下取整，和题目“向零截断”不同
+            #  对负数的小数结果（如 -2.7），向零截断是 -2
+            #  但从 Python 的 //（向下取整）结果 -3 修正为 -2，所以要 +1。
+            q = a // b
+            if (a < 0) != (b < 0) and a % b != 0:
+                q += 1
+            return q
+
+        for t in tokens:
+            # 4) 当前 token 是数字：转 int 后入栈（栈里只放整数，后续更清晰）
+            if t not in ops:
+                stack.append(int(t))
+            
             else:
-                op1 = int(stack.pop())
-                op2 = int(stack.pop())
-                res = self.op_map[i](op2, op1)
-                stack.append(res)
-        
-        return stack[0]
+                # 5) 当前 token 是操作符：按 RPN 规则弹出两个操作数
+                #    注意先弹出的是右操作数 b，再弹出的是左操作数 a
+                b = stack.pop() 
+                a = stack.pop()
+
+                # 6) 一旦计算出子表达式结果，立即压回栈
+                if t == "+":
+                    stack.append(a + b)
+                elif t == "-":
+                    stack.append(a - b)
+                elif t == "*":
+                    stack.append(a * b)
+                else:  # "/"
+                    stack.append(div_towards_zero(a, b))
+
+        # 7) 所有 token 处理完后，栈顶就是最终答案
+        return stack[-1]
+
     
 sol = Solution()
 res = sol.erp(tokens = ["10","6","9","3","+","-11","*","/","*","17","+","5","+"])
